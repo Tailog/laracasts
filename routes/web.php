@@ -11,25 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    // Donnez des paramètres à la view, plusieurs façon de le faire
-    $coachs = [
-        'Lucas',
-        'Zak',
-        'Sami'
-    ];
-    /*
-    return view('welcome',compact('coachs'))
-    */
-    return view('welcome',[
-        'coachs'=> $coachs
-    ]);
-});
+// Réecriture des routes avec le controller
 
-Route::get('/about',function(){
-    return view('about');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('welcome','PagesController@home');
+Route::get('contact', 'PagesController@contact');
+Route::get('about','PagesController@about');
