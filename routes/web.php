@@ -13,6 +13,12 @@
 
 // Réecriture des routes avec le controller
 
-Route::get('welcome','PagesController@home');
+//Home Page
+
+
+Route::get('/','PagesController@home');
 Route::get('contact', 'PagesController@contact');
 Route::get('about','PagesController@about');
+
+//Projects Page
+Route::get('/projects','ProjectsController@index');
