@@ -12,7 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // Donnez des paramètres à la view, plusieurs façon de le faire
+    $coachs = [
+        'Lucas',
+        'Zak',
+        'Sami'
+    ];
+    /*
+    return view('welcome',compact('coachs'))
+    */
+    return view('welcome',[
+        'coachs'=> $coachs
+    ]);
 });
 
 Route::get('/about',function(){

@@ -5,4 +5,9 @@
 @section('content')
     <h1>Welcome To My HomePage</h1>
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae aspernatur delectus numquam ipsum nemo amet.</p>
+    <ul>
+        @foreach ($coachs as $coach)
+            <li>{{$coach}}</li>
+        @endforeach
+    </ul>
 @endsection
