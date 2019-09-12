@@ -21,4 +21,5 @@ Route::get('contact', 'PagesController@contact');
 Route::get('about','PagesController@about');
 
 //Projects Page
+//Génère les routes correspondantes, pour le système CRUD
 Route::resource('/projects','ProjectsController');

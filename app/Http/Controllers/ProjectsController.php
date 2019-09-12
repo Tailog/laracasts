@@ -15,6 +15,8 @@ class ProjectsController extends Controller
     public function index()
     {
         //
+        $projects = Project::all();
+        return view('projects.index',compact('projects'));
     }
 
     /**
@@ -25,6 +27,7 @@ class ProjectsController extends Controller
     public function create()
     {
         //
+        return view('projects.create');
     }
 
     /**
@@ -36,6 +39,12 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         //
+        $project = new Project();
+        $project->title = $request->title;
+        $project->description = $request->description;
+
+        $project->save();
+        return redirect('/projects');
     }
 
     /**
@@ -47,6 +56,7 @@ class ProjectsController extends Controller
     public function show(Project $project)
     {
         //
+        return view('projects.show',compact('project'));
     }
 
     /**
@@ -55,9 +65,10 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Project $project )
     {
         //
+        return view('projects.edit',compact('project'));
     }
 
     /**
@@ -70,6 +81,11 @@ class ProjectsController extends Controller
     public function update(Request $request, Project $project)
     {
         //
+        $project->title = $request->title;
+        $project->description = $request->description;
+        $project->save();
+
+        return redirect('/projects/'.$project->id);
     }
 
     /**
@@ -81,5 +97,7 @@ class ProjectsController extends Controller
     public function destroy(Project $project)
     {
         //
+        $project->delete();
+        return redirect('/projects');
     }
 }
