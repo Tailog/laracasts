@@ -5,21 +5,23 @@
 @endsection
 
 @section('content')
-    <h2>Create Project</h2>
+    <h2 class="title">Create Project</h2>
     <form action="/projects" method="POST">
       {{ csrf_field() }}
-      <div>
-        <label for="title">The Title :</label>
+      <div class="field">
+        <label for="title" class="label">The Title :</label>
         <br>
-        <input type="text" name="title" placeholder="Your Title">
+        <input class="input" type="text" name="title" placeholder="Your Title">
       </div>
-      <div>
-        <label for="description">The Description :</label>
+      <div class="field">
+        <label class="label" for="description">The Description :</label>
         <br>
-        <textarea type="text" name="description">Your Descritpion</textarea>
+        <textarea class="textarea" type="text" name="description">Your Descritpion</textarea>
       </div>
-      <button type="submit">
-        Send
-      </button>
+      <div class="control">
+        <button class="button is-primary" type="submit">
+          Send
+        </button>
+      </div>
     </form>
 @endsection

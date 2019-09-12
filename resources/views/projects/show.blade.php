@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
-  <h2>{{ $project->title }}</h2>
-  <p>{{ $project->description }}</p>
+  <h2 class="title">{{ $project->title }}</h2>
+  <p class="is-size-2">{{ $project->description }}</p>
+  <a href="/projects/{{$project->id}}/edit">Edit project</a>
 @endsection

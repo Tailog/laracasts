@@ -5,11 +5,10 @@
 @endsection
 
 @section('content')
-    <h1>Projects</h1>
+    <h1 class="title">Projects</h1>
+    <ul>
     @foreach ($projects as $project)
-    <div>
-      <h2>{{ $project->title}}</h2>
-    </div>
-        
+      <li><a href="/projects/{{$project->id}}">{{ $project->title}}</a></li>
     @endforeach
+    </ul>
 @endsection
