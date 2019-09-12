@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Validation;
 
 class ProjectsController extends Controller
 {
@@ -38,12 +39,20 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $project = new Project();
-        $project->title = $request->title;
-        $project->description = $request->description;
+        // Plusieurs facon d'écrire
+        // $project = new Project();
+        // $project->title = $request->title;
+        // $project->description = $request->description;
+        // $project->save();
 
-        $project->save();
+        $validate=$request->validate([
+            'title' => ['required','min:3'],
+            'description' => 'required|min:15',
+        ]);
+        
+        // Ne pas oublier de modifier le Model pour utiliser cette écriture
+        Project::create($validate);
+
         return redirect('/projects');
     }
 
@@ -81,9 +90,11 @@ class ProjectsController extends Controller
     public function update(Request $request, Project $project)
     {
         //
-        $project->title = $request->title;
-        $project->description = $request->description;
-        $project->save();
+        // $project->title = $request->title;
+        // $project->description = $request->description;
+        // $project->save();
+
+        $project->update(request(['title','descritpion']));
 
         return redirect('/projects/'.$project->id);
     }

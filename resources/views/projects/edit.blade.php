@@ -12,12 +12,12 @@
       <div class="control">
         <label for="title" class="label">The Title :</label>
         <br>
-        <input class="input" type="text" name="title" placeholder="Your Title" value="{{$project->title}}">
+        <input required class="input" type="text" name="title" placeholder="Your Title" value="{{$project->title}}">
       </div>
       <div class="control">
         <label for="description" class="label">The Description :</label>
         <br>
-        <textarea class="textarea" type="text" name="description">{{$project->description}}</textarea>
+        <textarea required class="textarea" type="text" name="description">{{$project->description}}</textarea>
       </div>
       <button class="button is-primary" type="submit">
         Send

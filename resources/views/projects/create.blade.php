@@ -11,12 +11,13 @@
       <div class="field">
         <label for="title" class="label">The Title :</label>
         <br>
-        <input class="input" type="text" name="title" placeholder="Your Title">
-      </div>
+        {{-- $errors->has => nous permet de savoir si il y a des erreus pour ce champ --}}
+        <input  class="input {{$errors->has('title') ? 'is-danger':''}}" type="text" name="title" placeholder="Your Title" value="{{old('title')}}">
+      </div> 
       <div class="field">
         <label class="label" for="description">The Description :</label>
         <br>
-        <textarea class="textarea" type="text" name="description">Your Descritpion</textarea>
+        <textarea  class="textarea {{$errors->has('description') ? 'is-danger':''}}" type="text" name="description" placeholder="Yout Description">{{old('description')}}</textarea>
       </div>
       <div class="control">
         <button class="button is-primary" type="submit">
@@ -24,4 +25,16 @@
         </button>
       </div>
     </form>
+    {{-- Partie Erreur du formulaire --}}
+    @if ($errors->any())
+      <div class="notification is-danger">
+        <ul>
+          @forelse ($errors->all() as $error)
+            <li>{{$error}}</li>
+          @empty
+              
+          @endforelse
+        </ul>
+      </div>
+    @endif
 @endsection
