@@ -23,3 +23,7 @@ Route::get('about','PagesController@about');
 //Projects Page
 //Génère les routes correspondantes, pour le système CRUD
 Route::resource('/projects','ProjectsController');
+
+
+Route::patch('/tasks/{task}','ProjectTasksController@update');
+Route::post('/projects/{project}/tasks','ProjectTasksController@store');
