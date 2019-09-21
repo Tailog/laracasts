@@ -74,7 +74,14 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        //Erreur 403 envoyé si nous ne sommes pas la bonne personne pour accéder à ce projet
+        // abort_if($project->owner_id !== auth()->id(),403);
+        //Policy methodes pour autoriser un certain utilisateur pour un projet donné
+        // $this->authorize('view',$project);
+        //Gate qui nous permet de réecrire l'autorisation
+        if(\Gate::denies('view',$project)){
+            abort(403);
+        }
         return view('projects.show',compact('project'));
     }
 
