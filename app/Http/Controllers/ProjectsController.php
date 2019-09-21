@@ -8,6 +8,11 @@ use Illuminate\Validation;
 
 class ProjectsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +21,9 @@ class ProjectsController extends Controller
     public function index()
     {
         //
-        $projects = Project::all();
-        return view('projects.index',compact('projects'));
+        $projects = Project::where('owner_id',auth()->id())->get();
+        $currentUserName = auth()->user()->name;
+        return view('projects.index',compact('projects','currentUserName'));
     }
 
     /**
@@ -49,7 +55,11 @@ class ProjectsController extends Controller
             'title' => ['required','min:3'],
             'description' => 'required|min:15',
         ]);
-        
+        if(auth()->user()== null){
+            $validate['owner_id'] = 0;
+        }else {
+            $validate['owner_id']=auth()->user()->id;
+        }
         // Ne pas oublier de modifier le Model pour utiliser cette écriture
         Project::create($validate);
 
