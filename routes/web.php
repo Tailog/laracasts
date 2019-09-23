@@ -31,7 +31,3 @@ Route::post('/projects/{project}/tasks','ProjectTasksController@store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
