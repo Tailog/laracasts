@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
-use App\Mail\ProjectCreated;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation;
 
 class ProjectsController extends Controller
@@ -23,7 +21,7 @@ class ProjectsController extends Controller
     public function index()
     {
         //
-        $projects = Project::where('owner_id',auth()->id())->orderBy('created_at', 'ascl')->get();
+        $projects = Project::where('owner_id',auth()->id())->orderBy('created_at', 'desc')->get();
         $currentUserName = auth()->user()->name;
         return view('projects.index',compact('projects','currentUserName'));
     }
@@ -63,11 +61,7 @@ class ProjectsController extends Controller
             $validate['owner_id']=auth()->user()->id;
         }
         // Ne pas oublier de modifier le Model pour utiliser cette écriture
-        $project=Project::create($validate);
-
-        Mail::to($project->owner->email)->send(
-            new ProjectCreated($project)
-        );
+        Project::create($validate);
 
         return redirect('/projects');
     }
